@@ -5,6 +5,7 @@ import helloBoard.demo.dto.Board.request.BoardCreateRequest;
 import helloBoard.demo.dto.Board.request.BoardUpdateRequest;
 import helloBoard.demo.dto.Board.response.BoardGetResponse;
 import helloBoard.demo.dto.Board.response.BoardInfoResponse;
+import helloBoard.demo.dto.BoardComment.request.BoardCommentCreateRequest;
 import helloBoard.demo.service.Board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,4 +42,9 @@ public class BoardController {
     // 좋아요 기능
     @GetMapping("/like")
     public void likesBoard(@RequestParam Long id) { boardService.likesBoard(id); }
+
+    @PostMapping("/post/comment")
+    public void saveComment(@RequestParam Long id, @RequestBody BoardCommentCreateRequest boardCommentCreateRequest) {
+
+    }
 }
