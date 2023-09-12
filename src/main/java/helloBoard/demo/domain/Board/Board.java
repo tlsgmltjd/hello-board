@@ -12,4 +12,5 @@ public class Board {
     private Long Id;
     private String Title;
     private String Content;
+    private Long likes;
 }

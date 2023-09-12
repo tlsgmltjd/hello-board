@@ -25,6 +25,7 @@ public class BoardService {
         Board board = new Board();
         board.setTitle(boardCreateRequest.getTitle());
         board.setContent(boardCreateRequest.getContent());
+        board.setLikes(0L);
         boardRepository.save(board);
     }
 
@@ -34,7 +35,7 @@ public class BoardService {
         List<BoardGetResponse> boardResponses = new ArrayList<>();
 
         for (Board b : boards) {
-            BoardGetResponse boardGetResponse = new BoardGetResponse(b.getId(), b.getTitle());
+            BoardGetResponse boardGetResponse = new BoardGetResponse(b.getId(), b.getTitle(), b.getLikes());
             boardResponses.add(boardGetResponse);
         }
 
@@ -44,7 +45,7 @@ public class BoardService {
     @Transactional
     public BoardInfoResponse getBoard(Long id) {
         Board boards = boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
-        BoardInfoResponse boardInfoResponse = new BoardInfoResponse(boards.getId(), boards.getTitle(), boards.getContent());
+        BoardInfoResponse boardInfoResponse = new BoardInfoResponse(boards.getId(), boards.getTitle(), boards.getContent(), boards.getLikes());
 
         return boardInfoResponse;
     }
