@@ -42,9 +42,4 @@ public class BoardController {
     // 좋아요 기능
     @GetMapping("/like")
     public void likesBoard(@RequestParam Long id) { boardService.likesBoard(id); }
-
-    @PostMapping("/post/comment")
-    public void saveComment(@RequestParam Long id, @RequestBody BoardCommentCreateRequest boardCommentCreateRequest) {
-
-    }
 }
