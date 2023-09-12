@@ -32,4 +32,7 @@ public class BoardController {
 
     @PutMapping("/update")
     public void updateBoard(@RequestBody BoardUpdateRequest boardUpdateRequest) { boardService.updateBoard(boardUpdateRequest); }
+
+    @GetMapping("/like")
+    public void likesBoard(@RequestParam Long id) { boardService.likesBoard(id); }
 }

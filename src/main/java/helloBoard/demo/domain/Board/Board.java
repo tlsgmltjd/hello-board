@@ -13,4 +13,8 @@ public class Board {
     private String Title;
     private String Content;
     private Long likes;
+
+    public void addLikes() {
+        this.likes = this.likes + 1;
+    }
 }

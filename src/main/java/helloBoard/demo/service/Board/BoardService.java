@@ -63,4 +63,11 @@ public class BoardService {
         board.setContent(boardUpdateRequest.getContent());
         boardRepository.save(board);
     }
+
+    @Transactional
+    public void likesBoard(Long id) {
+        Board board = boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        board.addLikes();
+        boardRepository.save(board);
+    }
 }
