@@ -3,6 +3,7 @@ package helloBoard.demo.service.Board;
 import helloBoard.demo.domain.Board.Board;
 import helloBoard.demo.dto.Board.request.BoardCreateRequest;
 import helloBoard.demo.dto.Board.response.BoardGetResponse;
+import helloBoard.demo.dto.Board.response.BoardInfoResponse;
 import helloBoard.demo.repository.Board.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,13 @@ public class BoardService {
         }
 
         return boardResponses;
+    }
+
+    @Transactional
+    public BoardInfoResponse getBoard(Long id) {
+        Board boards = boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        BoardInfoResponse boardInfoResponse = new BoardInfoResponse(boards.getId(), boards.getTitle(), boards.getContent());
+
+        return boardInfoResponse;
     }
 }
