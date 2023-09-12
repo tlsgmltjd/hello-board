@@ -24,4 +24,7 @@ public class BoardController {
     public List<BoardGetResponse> getBoards() { return boardService.getBoards(); }
     @GetMapping("/info")
     public BoardInfoResponse getBoard(@RequestParam Long id) { return boardService.getBoard(id); }
+
+    @DeleteMapping("/delete")
+    public void deleteBoard(@RequestParam Long id) { boardService.deleteBoard(id); };
 }

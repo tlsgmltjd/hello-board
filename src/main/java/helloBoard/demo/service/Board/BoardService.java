@@ -46,4 +46,10 @@ public class BoardService {
 
         return boardInfoResponse;
     }
+
+    @Transactional
+    public void deleteBoard(Long id) {
+        boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        boardRepository.deleteById(id);
+    }
 }
