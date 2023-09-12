@@ -2,6 +2,7 @@ package helloBoard.demo.controller;
 
 import helloBoard.demo.domain.Board.Board;
 import helloBoard.demo.dto.Board.request.BoardCreateRequest;
+import helloBoard.demo.dto.Board.request.BoardUpdateRequest;
 import helloBoard.demo.dto.Board.response.BoardGetResponse;
 import helloBoard.demo.dto.Board.response.BoardInfoResponse;
 import helloBoard.demo.service.Board.BoardService;
@@ -22,9 +23,13 @@ public class BoardController {
 
     @GetMapping("/get")
     public List<BoardGetResponse> getBoards() { return boardService.getBoards(); }
+
     @GetMapping("/info")
     public BoardInfoResponse getBoard(@RequestParam Long id) { return boardService.getBoard(id); }
 
     @DeleteMapping("/delete")
-    public void deleteBoard(@RequestParam Long id) { boardService.deleteBoard(id); };
+    public void deleteBoard(@RequestParam Long id) { boardService.deleteBoard(id); }
+
+    @PutMapping("/update")
+    public void updateBoard(@RequestBody BoardUpdateRequest boardUpdateRequest) { boardService.updateBoard(boardUpdateRequest); }
 }

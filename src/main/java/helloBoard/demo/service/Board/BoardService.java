@@ -2,6 +2,7 @@ package helloBoard.demo.service.Board;
 
 import helloBoard.demo.domain.Board.Board;
 import helloBoard.demo.dto.Board.request.BoardCreateRequest;
+import helloBoard.demo.dto.Board.request.BoardUpdateRequest;
 import helloBoard.demo.dto.Board.response.BoardGetResponse;
 import helloBoard.demo.dto.Board.response.BoardInfoResponse;
 import helloBoard.demo.repository.Board.BoardRepository;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Service
 public class BoardService {
+
     @Autowired
     BoardRepository boardRepository;
 
@@ -51,5 +53,13 @@ public class BoardService {
     public void deleteBoard(Long id) {
         boardRepository.findById(id).orElseThrow(IllegalArgumentException::new);
         boardRepository.deleteById(id);
+    }
+
+    @Transactional
+    public void updateBoard(BoardUpdateRequest boardUpdateRequest) {
+        Board board = boardRepository.findById(boardUpdateRequest.getId()).orElseThrow(IllegalArgumentException::new);
+        board.setTitle(boardUpdateRequest.getTitle());
+        board.setContent(boardUpdateRequest.getContent());
+        boardRepository.save(board);
     }
 }
