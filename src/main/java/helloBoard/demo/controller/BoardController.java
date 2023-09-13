@@ -2,6 +2,7 @@ package helloBoard.demo.controller;
 
 import helloBoard.demo.domain.Board.Board;
 import helloBoard.demo.dto.Board.request.BoardCreateRequest;
+import helloBoard.demo.dto.Board.request.BoardLikesRequest;
 import helloBoard.demo.dto.Board.request.BoardUpdateRequest;
 import helloBoard.demo.dto.Board.response.BoardGetResponse;
 import helloBoard.demo.dto.Board.response.BoardInfoResponse;
@@ -41,6 +42,6 @@ public class BoardController {
     public void updateBoard(@RequestBody BoardUpdateRequest boardUpdateRequest) { boardService.updateBoard(boardUpdateRequest); }
 
     // 좋아요 기능
-    @GetMapping("/like")
-    public void likesBoard(@RequestParam Long id) { boardService.likesBoard(id); }
+    @PostMapping("/like")
+    public void likesBoard(@RequestBody BoardLikesRequest boardLikesRequest) { boardService.likesBoard(boardLikesRequest.getBoardId()); }
 }
