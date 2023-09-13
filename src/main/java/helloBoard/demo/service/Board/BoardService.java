@@ -3,6 +3,7 @@ package helloBoard.demo.service.Board;
 import helloBoard.demo.domain.Board.Board;
 import helloBoard.demo.dto.Board.request.BoardCreateRequest;
 import helloBoard.demo.dto.Board.request.BoardUpdateRequest;
+import helloBoard.demo.dto.Board.response.BoardCreateResponse;
 import helloBoard.demo.dto.Board.response.BoardGetResponse;
 import helloBoard.demo.dto.Board.response.BoardInfoResponse;
 import helloBoard.demo.repository.Board.BoardRepository;
@@ -20,13 +21,15 @@ public class BoardService {
     BoardRepository boardRepository;
 
     @Transactional
-    public void saveBoard(BoardCreateRequest boardCreateRequest) {
+    public BoardCreateResponse saveBoard(BoardCreateRequest boardCreateRequest) {
         if (boardCreateRequest.getTitle().isEmpty() || boardCreateRequest.getContent().isEmpty()) throw new IllegalArgumentException();
         Board board = new Board();
         board.setTitle(boardCreateRequest.getTitle());
         board.setContent(boardCreateRequest.getContent());
         board.setLikes(0L);
-        boardRepository.save(board);
+        board = boardRepository.save(board);
+        BoardCreateResponse boardCreateResponse = new BoardCreateResponse(board.getId(), board.getTitle(), board.getLikes());
+        return boardCreateResponse;
     }
 
     @Transactional

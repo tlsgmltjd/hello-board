@@ -4,6 +4,7 @@ import helloBoard.demo.domain.Board.Board;
 import helloBoard.demo.dto.Board.request.BoardCreateRequest;
 import helloBoard.demo.dto.Board.request.BoardLikesRequest;
 import helloBoard.demo.dto.Board.request.BoardUpdateRequest;
+import helloBoard.demo.dto.Board.response.BoardCreateResponse;
 import helloBoard.demo.dto.Board.response.BoardGetResponse;
 import helloBoard.demo.dto.Board.response.BoardInfoResponse;
 import helloBoard.demo.dto.BoardComment.request.BoardCommentCreateRequest;
@@ -23,7 +24,7 @@ public class BoardController {
 
     // 게시글 작성하기
     @PostMapping("/post")
-    public void saveBoard(@RequestBody BoardCreateRequest boardCreateRequest) { boardService.saveBoard(boardCreateRequest); }
+    public BoardCreateResponse saveBoard(@RequestBody BoardCreateRequest boardCreateRequest) { return boardService.saveBoard(boardCreateRequest); }
 
     // 게시글 가져오기
     @GetMapping("/get")
