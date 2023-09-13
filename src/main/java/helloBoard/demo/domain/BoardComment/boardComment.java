@@ -13,14 +13,15 @@ public class boardComment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    private Long board_id;
+    @Column(name = "board_id")
+    private Long boardId;
     private String author_name;
     private String Content;
     @CreationTimestamp
     private Timestamp date;
 
     public boardComment(Long boardId, String authorName, String content) {
-        this.board_id = boardId;
+        this.boardId = boardId;
         this.author_name = authorName;
         Content = content;
     }
