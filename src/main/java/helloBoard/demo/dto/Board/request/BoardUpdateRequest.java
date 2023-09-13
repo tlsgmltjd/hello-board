@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class BoardUpdateRequest {
     private long id;
-    private String Title;
-    private String Content;
+    private String title;
+    private String content;
 }
