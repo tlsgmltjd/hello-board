@@ -22,7 +22,7 @@ public class BoardService {
 
     @Transactional
     public BoardCreateResponse saveBoard(BoardCreateRequest boardCreateRequest) {
-        if (boardCreateRequest.getTitle().isEmpty() || boardCreateRequest.getContent().isEmpty()) throw new IllegalArgumentException();
+        if (boardCreateRequest.getTitle().isBlank() || boardCreateRequest.getContent().isBlank()) throw new IllegalArgumentException();
         Board board = new Board();
         board.setTitle(boardCreateRequest.getTitle());
         board.setContent(boardCreateRequest.getContent());

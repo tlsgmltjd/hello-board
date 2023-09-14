@@ -18,8 +18,9 @@ public class BoardCommentService {
 
     @Transactional
     public void saveComment(Long boardId, BoardCommentCreateRequest boardCommentCreateRequest) {
-        if (boardId == null || boardCommentCreateRequest.getContent().isEmpty() || boardCommentCreateRequest.getAuthorName().isEmpty())
+        if (boardId == null || boardCommentCreateRequest.getContent().isBlank() || boardCommentCreateRequest.getAuthorName().isBlank()) {
             throw new IllegalArgumentException();
+        }
 
         boardComment boardComment = new boardComment(boardId, boardCommentCreateRequest.getAuthorName(), boardCommentCreateRequest.getContent());
         boardCommentRepository.save(boardComment);
