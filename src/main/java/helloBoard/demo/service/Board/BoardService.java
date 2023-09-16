@@ -24,9 +24,7 @@ public class BoardService {
     public BoardCreateResponse saveBoard(BoardCreateRequest boardCreateRequest) {
         if (boardCreateRequest.getTitle().isBlank() || boardCreateRequest.getContent().isBlank()) throw new IllegalArgumentException();
         Board board = new Board();
-        board.setTitle(boardCreateRequest.getTitle());
-        board.setContent(boardCreateRequest.getContent());
-        board.setLikes(0L);
+        board.createBoard(boardCreateRequest.getTitle(), boardCreateRequest.getContent());
         board = boardRepository.save(board);
         BoardCreateResponse boardCreateResponse = new BoardCreateResponse(board.getId(), board.getTitle(), board.getLikes());
         return boardCreateResponse;
@@ -62,8 +60,7 @@ public class BoardService {
     @Transactional
     public void updateBoard(BoardUpdateRequest boardUpdateRequest) {
         Board board = boardRepository.findById(boardUpdateRequest.getId()).orElseThrow(IllegalArgumentException::new);
-        board.setTitle(boardUpdateRequest.getTitle());
-        board.setContent(boardUpdateRequest.getContent());
+        board.updataBoard(boardUpdateRequest.getTitle(), boardUpdateRequest.getContent());
         boardRepository.save(board);
     }
 

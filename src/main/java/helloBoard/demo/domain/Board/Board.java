@@ -22,4 +22,15 @@ public class Board {
     public void addLikes() {
         this.likes = this.likes + 1;
     }
+
+    public void createBoard(String title, String content) {
+        Title = title;
+        Content = content;
+        this.likes = 0L;
+    }
+
+    public void updataBoard(String title, String content) {
+        Title = title;
+        Content = content;
+    }
 }
